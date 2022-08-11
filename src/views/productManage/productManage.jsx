@@ -60,6 +60,18 @@ class ProductManage extends Component{
         });
     };
 
+    loadData = async () => {
+        let res = await ProductService.fetchProduct();
+
+        if (res.status === 200) {
+            this.setState({
+                data: res.data.data
+            });
+        }
+        console.log(this.state.data)    // print customers array
+
+    };
+
     getAllProductCategories = async () => {
         let res = await ProductService.fetchLimitGetAllProducts();
 
