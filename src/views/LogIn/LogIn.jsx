@@ -1,11 +1,12 @@
 import { styleSheet } from "./style";
 import { withStyles} from "@mui/styles";
-import { Typography } from "@mui/material";
+import { Typography} from "@mui/material";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 import {ValidatorForm} from "react-material-ui-form-validator";
 import LogInService from "../../services/LogInService";
+import GDSESnackBar from "../../component/SnackBar";
 
 const { Component } = require("react");
 const { render } = require("react-dom");
@@ -48,9 +49,10 @@ class LogIn extends Component {
             // this.clearFields();
             //this.loadData();
         } else {
+            console.log(res);
             this.setState({
                 alert: true,
-                message: res.response.data.message,
+                message: res.response.data,
                 severity: 'error'
             });
         }
@@ -61,6 +63,18 @@ class LogIn extends Component {
     render(){
         const {classes} = this.props;
         return(
+            <>
+                <GDSESnackBar
+                    open={this.state.alert}
+                    onClose={() => {
+                        this.setState({ alert: false })
+                    }}
+                    message={this.state.message}
+                    autoHideDuration={3000}
+                    severity={this.state.severity}
+                    variant="filled"
+                >
+                </GDSESnackBar>
             <ValidatorForm ref="form"  onSubmit={this.submitLogin}>
         <div className={classes.container}>
                <div className={classes.logincover}>
@@ -127,6 +141,7 @@ class LogIn extends Component {
         </div>
             </ValidatorForm>
 
+            </>
         )
     }
 }
