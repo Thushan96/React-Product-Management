@@ -28,6 +28,8 @@ class LogIn extends Component {
         }
     }
 
+
+
     submitLogin = async () => {
         let formData = this.state.loginData;
         console.log("inside console log");

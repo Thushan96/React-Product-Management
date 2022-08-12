@@ -7,6 +7,7 @@ import Stack from '@mui/material/Stack';
 import ProductService from "../../services/ProductService";
 import PersonIcon from '@mui/icons-material/Person'
 import {TextValidator, ValidatorForm} from "react-material-ui-form-validator";
+import CartService from "../../services/CartService";
 
 
 
@@ -58,6 +59,29 @@ class ProductManage extends Component{
                 category: ''
             },
         });
+    };
+
+    deleteProduct = async (id) => {
+        let params = {
+            id: id
+        }
+        let res = await ProductService.deleteProduct(params);
+        console.log(res)
+
+        if (res.status === 200) {
+            this.setState({
+                alert: true,
+                message: res.data.message,
+                severity: 'success'
+            });
+            //this.loadData();
+        } else {
+            this.setState({
+                alert: true,
+                message: res.data.message,
+                severity: 'error'
+            });
+        }
     };
 
     loadData = async () => {
@@ -171,6 +195,7 @@ class ProductManage extends Component{
                             getOptionLabel={
                                 (option) => option.type
                             }
+
                             style={{width: '40vw'}}
                             id="controllable-states-demo"
                             options={this.state.categoryTypes}

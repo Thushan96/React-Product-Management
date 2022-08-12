@@ -166,6 +166,80 @@ class CartManage extends Component{
         }
     };
 
+    putCart = async () => {
+
+        let formData = this.state.cartData;
+
+        let res = await CartService.putCart(formData);
+        if (res.status === 200) {
+            this.setState({
+                alert: true,
+                message: 'Cart Successfully Updated',
+                severity: 'success',
+            });
+            this.clearFields();
+            //this.loadData();
+        } else {
+            this.setState({
+                alert: true,
+                message: res.response.data.message,
+                severity: 'error'
+            });
+        }
+    };
+
+    getSingleCart = async (id) => {
+
+
+        let params={
+            id: id
+        }
+
+        let res = await CartService.fetchAsingleCart(params);
+        if (res.status === 200) {
+            this.setState({
+                alert: true,
+                message: 'single cart fetched',
+                severity: 'success',
+            });
+            this.clearFields();
+            //this.loadData();
+        } else {
+            this.setState({
+                alert: true,
+                message: res.response.data.message,
+                severity: 'error'
+            });
+        }
+    };
+
+
+
+
+
+    deleteCart = async (id) => {
+        let params = {
+            id: id
+        }
+        let res = await CartService.deleteCart(params);
+        console.log(res)
+
+        if (res.status === 200) {
+            this.setState({
+                alert: true,
+                message: res.data.message,
+                severity: 'success'
+            });
+            //this.loadData();
+        } else {
+            this.setState({
+                alert: true,
+                message: res.data.message,
+                severity: 'error'
+            });
+        }
+    };
+
 
     render() {
         return(
