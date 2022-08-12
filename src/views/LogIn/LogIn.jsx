@@ -87,6 +87,7 @@ class LogIn extends Component {
                             id="outlined-username-input"
                             label="UserName"
                             type="text"
+                            value={this.state.loginData.username}
                                    onChange={(e) => {
                                        console.log(e.target.value)
                                        let formData = this.state.loginData
@@ -99,6 +100,7 @@ class LogIn extends Component {
                             id="outlined-password-input"
                             label="password"
                             type="password"
+                                   value={this.state.loginData.password}
                                    onChange={(e) => {
                                        console.log(e.target.value)
                                        let formData = this.state.loginData
