@@ -4,6 +4,7 @@ import SignUp from "../views/Register/Register";
 import LogIn from "../views/LogIn/LogIn";
 import ProductManage from "../views/productManage/productManage";
 import CartManage from "../views/cartManage/CartManage";
+import User from "../views/user/User";
 import Dashboard from "../views/Dashboard";
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
               <Route exact path='/dashboard' element={<Dashboard/>}/>
               <Route exact path='/products' element={<ProductManage/>}/>
               <Route exact path='/cart' element={<CartManage/>}/>
+              <Route exact path='/user' element={<User/>}/>
 
           </Routes>
       </BrowserRouter>
